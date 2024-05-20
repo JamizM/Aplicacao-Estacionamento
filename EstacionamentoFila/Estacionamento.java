@@ -42,8 +42,8 @@ public class Estacionamento {
         System.out.println(filaCarros);
     }
     public ResultadoConsulta buscarCarro(String placa) {
-        No<Carro> atual = filaCarros.primeiro;
-        int posicao = 1;
+        No<Carro> atual = filaCarros.primeiro; //atributo que retorna um No do tipo Carro
+        int posicao = 1; //posicao na fila começa em 1
 
         while (atual != null) {
             if (atual.getInfo().getPlaca().equals(placa)) {
@@ -83,7 +83,7 @@ class Carro {
     }
 }
 
-class ResultadoConsulta {
+class ResultadoConsulta { //classe para metodo buscarCarro
     private int posicaoFila;
     private long tempoPermanencia; //colocado para manter o padrão de minutos
     private LocalDateTime entrada;
