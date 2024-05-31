@@ -28,6 +28,6 @@ public class TesteEstacionamento {
         estacionamento.registrarEntradaCarro("MNO7890");
         estacionamento.mostrarFilaCarros();
 
-        System.out.println(estacionamento.buscarCarro(("MNO7890"))); //mostra em qual posicao esta o carro
+
     }
 }

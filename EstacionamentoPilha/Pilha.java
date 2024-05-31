@@ -1,37 +1,43 @@
-public class Pilha {
-    private No topo;
+import javax.sound.midi.MidiDevice.Info;
+ 
+@SuppressWarnings("hiding")
+public class Pilha<Info> {
+    private No<Info> topo;
+    private int tamanho;
+    //construtor padrão
     public boolean estaVazia() {
-        return topo==null;
+        return topo == null;
     }
-    public void push (char i) {
-        No novo = new No(i);
-        if (!estaVazia()) {
-            novo.setProximo(topo);
-        }
+    public void push (Info info) {
+        No<Info> novo = new No<>(info);
+        if (!estaVazia()) novo.setProximo(topo);
         topo = novo;
+        tamanho++;
     }
-    public char pop () {
-        char aux = topo.getInfo();
+    public Info pop () {
+        if (estaVazia()) return null;
+        Info info = topo.getInfo();
         topo = topo.getProximo();
-        return aux;
+        tamanho--;
+        return info;
     }
-    @Override 
-    public String toString() {
-        String s = "pilha: ";
-        if (estaVazia()) 
-            s += "vazia";
-        else {
-            No temp = topo;
-            while (temp != null) {
-                s += temp + "\n";
-                temp = temp.getProximo();
-            }
-            s += "\\\\";
-        }
-        return s + "\n";
-    }
-
-    public char consultaTopo() {
+    public Info consultaTopo () {
+        if (estaVazia()) return null;
         return topo.getInfo();
     }
+    public int getTamanho() {
+        return tamanho;
+    }
+    @Override
+    public String toString () {
+        if (estaVazia()) return "pilha vazia";
+        String s = "";
+        No<Info> aux = topo;
+        while (aux != null) {
+            s += aux + "\n";
+            aux = aux.getProximo();
+        }
+        return s;
+    }
 }
+ 
